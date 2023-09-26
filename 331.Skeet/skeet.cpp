@@ -372,13 +372,13 @@ void Skeet::interact(const UserInput & ui)
 
    // a pellet can be shot at any time
    if (ui.isSpace())
-      p = new Pellet(gun.getAngle());
+      p = factory(PELLET, gun.getAngle());
    // missiles can be shot at level 2 and higher
    else if (ui.isM() && time.level() > 1)
-      p = new Missile(gun.getAngle());
+      p = factory(MISSILE, gun.getAngle());
    // bombs can be shot at level 3 and higher
    else if (ui.isB() && time.level() > 2)
-      p = new Bomb(gun.getAngle());
+      p = factory(BOMB, gun.getAngle());
    
    bullseye = ui.isShift();
 

@@ -13,6 +13,8 @@
 #include <list>
 #include <cassert>
 
+enum BulletType { PELLET, MISSILE, BOMB };
+
 /*********************************************
  * BULLET
  * Something to shoot something else
@@ -137,3 +139,24 @@ public:
    }
    void move(std::list<Effect*> & effects);
 };
+
+/*********************************
+* Factory
+* For the creation of Bullets
+**********************************/
+inline Bullet* factory(BulletType type, double angle)
+{
+   switch (type)
+   {
+   case (PELLET):
+      return new Pellet(angle);
+   case (MISSILE):
+      return new Missile(angle);
+   case (BOMB):
+      return new Bomb(angle);
+   }
+
+   // Program should never reach this point.
+   assert(false);
+   return (nullptr);
+}
