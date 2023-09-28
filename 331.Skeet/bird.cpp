@@ -337,3 +337,75 @@ void Sinker::draw()
       drawDisk(pt, radius - 4.0, 0.0, 0.0, 0.0);
    }
 }
+
+/*********************************************
+ * LEVEL 1 FACTORY
+ * Returns the standard birds for level 1
+ *********************************************/
+Bird* BirdFactoryLevel1::factory(BirdType type)
+{
+   float size = 30.0;
+   if (type == STANDARD)
+   {
+      return new Standard(size, 7.0, 10);
+   }
+   return nullptr;
+}
+
+/*********************************************
+ * LEVEL 2 FACTORY
+ * Returns standards and sinkers for level 2
+ *********************************************/
+Bird* BirdFactoryLevel2::factory(BirdType type)
+{
+   float size = 25.0;
+   switch (type)
+   {
+      case STANDARD:
+         return new Standard(size, 5.0, 12);
+      case SINKER:
+         return new Sinker(size, 4.5, 20);
+   }
+   return nullptr;
+}
+
+/*********************************************
+ * LEVEL 3 FACTORY
+ * Returns standards, sinkers, and floaters
+ * for level 3
+ *********************************************/
+Bird* BirdFactoryLevel3::factory(BirdType type)
+{
+   float size = 20.0;
+   switch (type)
+   {
+      case STANDARD:
+         return new Standard(size, 5.0, 15);
+      case SINKER:
+         return new Sinker(size, 4.0, 22);
+      case FLOATER:
+         return new Floater(size, 5.0, 15);
+   }
+   return nullptr;
+}
+
+/*********************************************
+ * LEVEL 4 FACTORY
+ * Returns standards and sinkers for level 4
+ *********************************************/
+Bird* BirdFactoryLevel4::factory(BirdType type)
+{
+   float size = 15.0;
+   switch (type)
+   {
+      case STANDARD:
+         return new Standard(size, 4.0, 18);
+      case SINKER:
+         return new Sinker(size, 3.5, 25);
+      case FLOATER:
+         return new Floater(size, 4.0, 25);
+      case CRAZY:
+         return new Crazy(size, 4.5, 35);
+   }
+   return nullptr;
+}

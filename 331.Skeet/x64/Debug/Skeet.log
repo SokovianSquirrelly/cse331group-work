@@ -4,20 +4,20 @@
   game.cpp
   gun.cpp
   points.cpp
-D:\Programming\cse331group-work\331.Skeet\points.cpp(83,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Programming\cse331group-work\331.Skeet\points.cpp(84,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Programming\cse331group-work\331.Skeet\points.cpp(107,15): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\points.cpp(83,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\points.cpp(84,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\points.cpp(107,15): warning C4305: '-=': truncation from 'double' to 'float'
   position.cpp
   score.cpp
   skeet.cpp
-D:\Programming\cse331group-work\331.Skeet\skeet.cpp(267,14): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Programming\cse331group-work\331.Skeet\skeet.cpp(268,14): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Programming\cse331group-work\331.Skeet\skeet.cpp(275,17): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Programming\cse331group-work\331.Skeet\skeet.cpp(276,17): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Programming\cse331group-work\331.Skeet\skeet.cpp(278,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Programming\cse331group-work\331.Skeet\skeet.cpp(279,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Programming\cse331group-work\331.Skeet\skeet.cpp(282,30): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\skeet.cpp(267,14): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\skeet.cpp(268,14): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\skeet.cpp(275,17): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\skeet.cpp(276,17): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\skeet.cpp(278,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\skeet.cpp(279,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\skeet.cpp(282,30): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
   time.cpp
   uiInteract.cpp
   Generating Code...
-  Skeet.vcxproj -> D:\Programming\cse331group-work\331.Skeet\x64\Debug\Skeet.exe
+  Skeet.vcxproj -> C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\x64\Debug\Skeet.exe
