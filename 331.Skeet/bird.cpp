@@ -147,9 +147,15 @@ Crazy::Crazy(double radius, double speed, int points) : Bird()
 
  /***************************************************************/
  /***************************************************************/
- /*                            ADVANCE      APPLY DECORATER HERE                    */
+ /*                            ADVANCE APPLY DECORATER HERE     */
  /***************************************************************/
  /***************************************************************/
+
+
+Velocity StandardDrag(Velocity v, double drag)
+{
+   return(v *= drag);
+}
 
 /*********************************************
  * STANDARD ADVANCE
@@ -158,7 +164,9 @@ Crazy::Crazy(double radius, double speed, int points) : Bird()
 void Standard::advance()
 {
    // small amount of drag
-   v *= 0.995;
+   // v *= 0.995;
+
+    v = StandardDrag(v, .995);
 
    // inertia
    pt.add(v);
