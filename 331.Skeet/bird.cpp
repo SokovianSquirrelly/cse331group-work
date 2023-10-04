@@ -9,6 +9,7 @@
 
 #include <cassert>
 #include "bird.h"
+#include "force.h"
 
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
@@ -161,6 +162,7 @@ void Standard::advance()
    // small amount of drag
    // v *= .995;
    //StandardDrag(v, .995);
+   
 
    // inertia
    pt.add(v);
