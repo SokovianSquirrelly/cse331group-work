@@ -151,17 +151,6 @@ Crazy::Crazy(double radius, double speed, int points) : Bird()
  /***************************************************************/
  /***************************************************************/
 
-void Gravity(Velocity v, double gravity)
-{
-   v.addDy(gravity);
-}
-
-Velocity StandardDrag(Velocity v, double drag)
-{
-   return(v *= drag);
-}
-
-
 
 /*********************************************
  * STANDARD ADVANCE
