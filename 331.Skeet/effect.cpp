@@ -214,3 +214,47 @@ void Exhaust :: fly()
    // increase the age so it fades away
    age -= 0.025;
 }
+
+void RenderEffect::execute(Effect *effect)
+{
+   if (effect->isDead())
+      return;
+
+   drawLines();
+   drawTriangleFan();
+}
+
+void RenderEffect::drawLines()
+{
+   glBegin(GL_LINES);
+}
+
+void RenderEffect::drawTriangleFan()
+{
+
+}
+
+void RenderEffect::setColor(float age)
+{
+
+}
+
+void RenderEffect::drawEffect(Position point, Position ptEnd)
+{
+
+}
+
+void RenderEffect::finishDrawing()
+{
+   glEnd();
+}
+
+void RenderFragment::drawLines()
+{
+   // This method intentionally left blank
+}
+
+void RenderFragment::drawEffect(Position point, float age)
+{
+
+}

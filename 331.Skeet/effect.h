@@ -89,3 +89,23 @@ public:
     // move it forward with regards to inertia. Let it age
     void fly();
 };
+
+class RenderEffect
+{
+public:
+   void execute(Effect *effect);
+
+private:
+   virtual void drawLines();
+   virtual void drawTriangleFan();
+   void setColor(float);
+   virtual void drawEffect(Position, Position);
+   void finishDrawing();
+};
+
+class RenderFragment : RenderEffect
+{
+private:
+   void drawLines();
+   void drawEffect(Position, float);
+};
