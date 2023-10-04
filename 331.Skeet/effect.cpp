@@ -215,7 +215,17 @@ void Exhaust :: fly()
    age -= 0.025;
 }
 
-void RenderEffect::execute(Effect *effect)
+/***************************************************************/
+/***************************************************************/
+/*                      RENDER EFFECTS                         */
+/***************************************************************/
+/***************************************************************/
+
+/************************************************************************
+ * EXECUTE
+ * All of the steps for render() are here
+ *************************************************************************/
+void Effect::RenderEffect::execute(Effect* effect)
 {
    if (effect->isDead())
       return;
@@ -224,37 +234,42 @@ void RenderEffect::execute(Effect *effect)
    drawTriangleFan();
 }
 
-void RenderEffect::drawLines()
+void Effect::RenderEffect::drawLines()
 {
    glBegin(GL_LINES);
 }
 
-void RenderEffect::drawTriangleFan()
+void Effect::RenderEffect::drawTriangleFan()
 {
 
 }
 
-void RenderEffect::setColor(float age)
+void Effect::RenderEffect::setColor(float age)
 {
 
 }
 
-void RenderEffect::drawEffect(Position point, Position ptEnd)
+void Effect::RenderEffect::drawEffect(Position point, Position ptEnd, float age)
 {
 
 }
 
-void RenderEffect::finishDrawing()
+void Effect::RenderEffect::finishDrawing()
 {
    glEnd();
 }
 
-void RenderFragment::drawLines()
+void Effect::RenderFragment::drawLines()
 {
    // This method intentionally left blank
 }
 
-void RenderFragment::drawEffect(Position point, float age)
+void Effect::RenderFragment::drawEffect(Position point, Position ptEnd, float age)
+{
+
+}
+
+void Effect::RenderTrail::drawTriangleFan()
 {
 
 }

@@ -8,8 +8,8 @@
  ************************************************************************/
 #pragma once
 
+class Bird;         // Forwards declaration of the class
 
-class Bird;
 /***********************************
 * FORCE
 * Abstract representation of a force
@@ -17,6 +17,15 @@ class Bird;
 class Force
 {
    virtual void apply(Bird* b) = 0;
+};
+
+/*********************************
+* Inertia: FORCE
+* Experienced by all Birds
+**********************************/
+class Inertia : public Force
+{
+   void apply(Bird* b);
 };
 
 /***********************************

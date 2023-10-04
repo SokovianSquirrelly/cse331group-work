@@ -17,7 +17,48 @@ class Effect
 {
 protected:
     Position pt;      // location of the effect
-    double age;    // 1.0 = new, 0.0 = dead
+    double age;       // 1.0 = new, 0.0 = dead
+    double size;      // size of the fragment
+    Position ptEnd;
+
+    /*********************************
+    * RENDER EFFECT
+    * Template method
+    **********************************/
+    class RenderEffect
+    {
+    public:
+       void execute(Effect *effect);
+
+    private:
+       virtual void drawLines();
+       virtual void drawTriangleFan();
+       void setColor(float);
+       virtual void drawEffect(Position, Position, float);
+       void finishDrawing();
+    };
+
+    /*********************************
+    * RENDER FRAGMENT : RENDER EFFECT
+    * Template method
+    **********************************/
+    class RenderFragment : public RenderEffect
+    {
+    private:
+       void drawLines();
+       void drawEffect(Position, Position, float);
+    };
+
+    /*********************************
+    * RENDER TRAIL : RENDER EFFECT
+    * Template method
+    **********************************/
+    class RenderTrail : public RenderEffect
+    {
+    private:
+       void drawTriangleFan();
+    };
+
 public:
     // create a fragment based on the velocity and position of the bullet
     Effect(const Position & pt) : pt(pt), age(0.5) {}
@@ -40,7 +81,6 @@ class Fragment : public Effect
 {
 private:
    Velocity v;    // direction the fragment is flying
-   double size;   // size of the fragment
 public:
     // create a fragment based on the velocity and position of the bullet
     Fragment(const Position & pt, const Velocity & v);
@@ -58,8 +98,6 @@ public:
  **********************/
 class Streek : public Effect
 {
-private:
-   Position ptEnd;
 public:
     // create a fragment based on the velocity and position of the bullet
     Streek(const Position & pt, Velocity v);
@@ -77,8 +115,6 @@ public:
  **********************/
 class Exhaust : public Effect
 {
-private:
-   Position ptEnd;
 public:
     // create a fragment based on the velocity and position of the bullet
     Exhaust(const Position & pt, Velocity v);
@@ -88,24 +124,4 @@ public:
     
     // move it forward with regards to inertia. Let it age
     void fly();
-};
-
-class RenderEffect
-{
-public:
-   void execute(Effect *effect);
-
-private:
-   virtual void drawLines();
-   virtual void drawTriangleFan();
-   void setColor(float);
-   virtual void drawEffect(Position, Position);
-   void finishDrawing();
-};
-
-class RenderFragment : RenderEffect
-{
-private:
-   void drawLines();
-   void drawEffect(Position, float);
 };

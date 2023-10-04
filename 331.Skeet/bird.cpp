@@ -159,7 +159,8 @@ Crazy::Crazy(double radius, double speed, int points) : Bird()
 void Standard::advance()
 {
    // small amount of drag
-    StandardDrag(v, .995);
+   // v *= .995;
+   //StandardDrag(v, .995);
 
    // inertia
    pt.add(v);
@@ -179,14 +180,15 @@ void Standard::advance()
 void Floater::advance()
 {
    // large amount of drag
-   StandardDrag(v, .990);
+   // v*= .990;
+   //StandardDrag(v, .990);
 
    // inertia
    pt.add(v);
 
    // anti-gravity
    // v.addDy(0.05);
-   Gravity(v, .05);
+   // Gravity(v, .05);
 
    // out of bounds checker
    if (isOutOfBounds())
