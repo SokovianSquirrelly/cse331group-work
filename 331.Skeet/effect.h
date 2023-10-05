@@ -20,6 +20,7 @@ protected:
     double age;       // 1.0 = new, 0.0 = dead
     double size;      // size of the fragment
     Position ptEnd;
+    Velocity v;
 
     /*********************************
     * RENDER EFFECT
@@ -67,7 +68,7 @@ public:
     Effect(const Position & pt) : pt(pt), age(0.5) {}
     
     // draw it
-    virtual void render() const = 0;
+    virtual void render() const;
     
     // move it forward with regards to inertia. Let it age
     virtual void fly() = 0;
@@ -82,8 +83,6 @@ public:
  **********************/
 class Fragment : public Effect
 {
-private:
-   Velocity v;    // direction the fragment is flying
 public:
     // create a fragment based on the velocity and position of the bullet
     Fragment(const Position & pt, const Velocity & v);
@@ -105,9 +104,6 @@ public:
     // create a fragment based on the velocity and position of the bullet
     Streek(const Position & pt, Velocity v);
     
-    // draw it
-    void render() const;
-    
     // move it forward with regards to inertia. Let it age
     void fly();
 };
@@ -121,9 +117,6 @@ class Exhaust : public Effect
 public:
     // create a fragment based on the velocity and position of the bullet
     Exhaust(const Position & pt, Velocity v);
-    
-    // draw it
-    void render() const;
     
     // move it forward with regards to inertia. Let it age
     void fly();

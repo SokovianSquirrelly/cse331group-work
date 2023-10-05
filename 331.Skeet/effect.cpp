@@ -126,32 +126,10 @@ void Fragment::render() const
 }
 
 /************************************************************************
- * STREEK RENDER
- * Draw the shrapnel streek on the screen
+ * EFFECT RENDER
+ * Draw a missile exhaust or shrapnel streak on the screen
  *************************************************************************/
-void Streek::render() const
-{
-    // Do nothing if we are already dead
-    if (isDead())
-        return;
-    
-    // Draw this sucker
-    glBegin(GL_LINES);
-    glColor3f((GLfloat)age, (GLfloat)age, (GLfloat)age);
-
-    // Draw the actual line
-    glVertex2f((GLfloat)pt.getX(), (GLfloat)pt.getY());
-    glVertex2f((GLfloat)ptEnd.getX(), (GLfloat)ptEnd.getY());
-
-    glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
-    glEnd();
-}
-
-/************************************************************************
- * EXHAUST RENDER
- * Draw a missile exhaust on the screen
- *************************************************************************/
-void Exhaust::render() const
+void Effect::render() const
 {
    // Do nothing if we are already dead
    if (isDead())
@@ -196,7 +174,7 @@ void Fragment :: fly()
 void Streek :: fly()
 {
     // move it forward with inertia (no gravity)
-//    pt += v;
+    pt += v;
     
    // increase the age so it fades away
    age -= 0.10;
@@ -209,7 +187,7 @@ void Streek :: fly()
 void Exhaust :: fly()
 {
    // move it forward with inertia (no gravity)
-//   pt += v;
+   pt += v;
     
    // increase the age so it fades away
    age -= 0.025;
@@ -237,26 +215,52 @@ void Effect::RenderEffect::execute(Effect* effect)
    finishDrawing();
 }
 
+/************************************************************************
+ * RENDER EFFECT - SET COLOR
+ * Sets the color of the effect depending on its age
+ *************************************************************************/
 void Effect::RenderEffect::setColor(float age)
 {
    glColor3f((GLfloat)age, (GLfloat)age, (GLfloat)age);
 }
 
+/************************************************************************
+ * RENDER EFFECT - FINISH DRAWING
+ * Calls glEnd in order to end drawing
+ *************************************************************************/
 void Effect::RenderEffect::finishDrawing()
 {
    glEnd();
 }
 
+/***************************************************************/
+/***************************************************************/
+/*                     RENDER FRAGMENT                         */
+/***************************************************************/
+/***************************************************************/
+
+/************************************************************************
+ * RENDER FRAGMENT - DRAW LINES
+ * The fragment doesn't use this
+ *************************************************************************/
 void Effect::RenderFragment::drawLines()
 {
    // This method intentionally left blank
 }
 
+/************************************************************************
+ * RENDER FRAGMENT - DRAW TRIANGLE FAN
+ * Gives instructions to start drawing the triangle fan
+ *************************************************************************/
 void Effect::RenderFragment::drawTriangleFan()
 {
    glBegin(GL_TRIANGLE_FAN);
 }
 
+/************************************************************************
+ * RENDER FRAGMENT - DRAW EFFECT
+ * Gives more detailed instruction on drawing the fragments
+ *************************************************************************/
 void Effect::RenderFragment::drawEffect(Position pt, Position ptEnd, float size)
 {
    glVertex2f((GLfloat)(pt.getX() - size), (GLfloat)(pt.getY() - size));
@@ -266,16 +270,36 @@ void Effect::RenderFragment::drawEffect(Position pt, Position ptEnd, float size)
    glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
 }
 
+
+/***************************************************************/
+/***************************************************************/
+/*                       RENDER TRAIL                          */
+/***************************************************************/
+/***************************************************************/
+
+/************************************************************************
+ * RENDER TRAIL - DRAW LINES
+ * Gives instructions on what shape to draw, specifically lines for the
+ * exhaust and streak
+ *************************************************************************/
 void Effect::RenderTrail::drawLines()
 {
    glBegin(GL_LINES);
 }
 
+/************************************************************************
+ * RENDER FRAGMENT - DRAW LINES
+ * The fragment doesn't use this
+ *************************************************************************/
 void Effect::RenderTrail::drawTriangleFan()
 {
    // This method intentionally left blank
 }
 
+/************************************************************************
+ * RENDER TRAIL - DRAW EFFECT
+ * Gives more detailed instruction on drawing the exhaust and streak
+ *************************************************************************/
 void Effect::RenderTrail::drawEffect(Position pt, Position ptEnd, float size)
 {
    glVertex2f((GLfloat)pt.getX(), (GLfloat)pt.getY());
