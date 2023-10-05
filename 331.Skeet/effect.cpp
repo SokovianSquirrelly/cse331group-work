@@ -232,26 +232,14 @@ void Effect::RenderEffect::execute(Effect* effect)
 
    drawLines();
    drawTriangleFan();
-}
-
-void Effect::RenderEffect::drawLines()
-{
-   glBegin(GL_LINES);
-}
-
-void Effect::RenderEffect::drawTriangleFan()
-{
-
+   setColor(effect->age);
+   drawEffect(effect->pt, effect->ptEnd, effect->size);
+   finishDrawing();
 }
 
 void Effect::RenderEffect::setColor(float age)
 {
-
-}
-
-void Effect::RenderEffect::drawEffect(Position point, Position ptEnd, float age)
-{
-
+   glColor3f((GLfloat)age, (GLfloat)age, (GLfloat)age);
 }
 
 void Effect::RenderEffect::finishDrawing()
@@ -264,12 +252,34 @@ void Effect::RenderFragment::drawLines()
    // This method intentionally left blank
 }
 
-void Effect::RenderFragment::drawEffect(Position point, Position ptEnd, float age)
+void Effect::RenderFragment::drawTriangleFan()
 {
+   glBegin(GL_TRIANGLE_FAN);
+}
 
+void Effect::RenderFragment::drawEffect(Position pt, Position ptEnd, float size)
+{
+   glVertex2f((GLfloat)(pt.getX() - size), (GLfloat)(pt.getY() - size));
+   glVertex2f((GLfloat)(pt.getX() + size), (GLfloat)(pt.getY() - size));
+   glVertex2f((GLfloat)(pt.getX() + size), (GLfloat)(pt.getY() + size));
+   glVertex2f((GLfloat)(pt.getX() - size), (GLfloat)(pt.getY() + size));
+   glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
+}
+
+void Effect::RenderTrail::drawLines()
+{
+   glBegin(GL_LINES);
 }
 
 void Effect::RenderTrail::drawTriangleFan()
 {
+   // This method intentionally left blank
+}
 
+void Effect::RenderTrail::drawEffect(Position pt, Position ptEnd, float size)
+{
+   glVertex2f((GLfloat)pt.getX(), (GLfloat)pt.getY());
+   glVertex2f((GLfloat)ptEnd.getX(), (GLfloat)ptEnd.getY());
+
+   glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
 }

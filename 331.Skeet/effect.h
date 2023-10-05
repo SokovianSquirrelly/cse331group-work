@@ -31,10 +31,10 @@ protected:
        void execute(Effect *effect);
 
     private:
-       virtual void drawLines();
-       virtual void drawTriangleFan();
+       virtual void drawLines() = 0;
+       virtual void drawTriangleFan() = 0;
        void setColor(float);
-       virtual void drawEffect(Position, Position, float);
+       virtual void drawEffect(Position, Position, float) = 0;
        void finishDrawing();
     };
 
@@ -46,6 +46,7 @@ protected:
     {
     private:
        void drawLines();
+       void drawTriangleFan();
        void drawEffect(Position, Position, float);
     };
 
@@ -56,7 +57,9 @@ protected:
     class RenderTrail : public RenderEffect
     {
     private:
+       void drawLines();
        void drawTriangleFan();
+       void drawEffect(Position, Position, float);
     };
 
 public:
