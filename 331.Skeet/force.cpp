@@ -5,6 +5,12 @@
  *    Efrain Gomez Fajardo
  * Summary:
  *    Changes that apply to Bird by just existing
+ *
+ *    The movement of the birds and the specific formulas for each type of movement. 
+ *    This includes inertia, gravity, anti-gravity, drag, strong drag, and random. 
+ *    This class will also check if the bird/skeet is dead and if the movement should stop. 
+ *    There are also 2 functions for generating and checking randomly generated 
+ *    numbers for the random movement. 
  ************************************************************************/
 
 #include "force.h"
@@ -15,13 +21,14 @@
 * RANDOM
 * These functions generate a random number.
 ****************************************************************/
-//int randomInt(int min, int max)
+//double randomInt(int min, int max)
 //{
 //   assert(min < max);
 //   int num = (rand() % (max - min)) + min;
 //   assert(min <= num && num <= max);
 //   return num;
 //}
+//
 //double randomFloat(double min, double max)
 //{
 //   assert(min <= max);

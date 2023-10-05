@@ -43,7 +43,8 @@
 
 /******************************************************************
  * RANDOM
- * These functions generate a random number.
+ * These functions generate a random number.If these will be in 
+ * the force class, we can probably remove them here. 
  ****************************************************************/
 int randomInt(int min, int max)
 {

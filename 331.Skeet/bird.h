@@ -50,6 +50,7 @@ public:
    bool isDead()           const { return dead;   }
    Position getPosition()     const { return pt;     }
    Velocity getVelocity()  const { return v;      }
+   Velocity getVelocity()        { return v; }
    double getRadius()      const { return radius; }
    int getPoints() const { return points; }
    bool isOutOfBounds() const
@@ -60,6 +61,8 @@ public:
 
    // special functions
    virtual void draw() = 0;
+   // Advance advance;
+   
    virtual void advance() = 0;
 };
 

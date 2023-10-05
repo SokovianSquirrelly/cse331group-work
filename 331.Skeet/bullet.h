@@ -42,6 +42,11 @@ public:
    Velocity getVelocity()  const { return v;      }
    double getRadius()      const { return radius; }
    int getValue()          const { return value;  }
+   bool isOutOfBounds() const //So move can access this.
+   {
+      return (pt.getX() < -radius || pt.getX() >= dimensions.getX() + radius ||
+         pt.getY() < -radius || pt.getY() >= dimensions.getY() + radius);
+   }
 
    // special functions
    virtual void death(std::list<Bullet *> & bullets) {}
@@ -50,11 +55,7 @@ public:
    virtual void move(std::list<Effect*> &effects);
 
 protected:
-   bool isOutOfBounds() const
-   {
-      return (pt.getX() < -radius || pt.getX() >= dimensions.getX() + radius ||
-         pt.getY() < -radius || pt.getY() >= dimensions.getY() + radius);
-   }
+   
    void drawLine(const Position& begin, const Position& end,
                  double red = 1.0, double green = 1.0, double blue = 1.0) const;
 
