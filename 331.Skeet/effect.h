@@ -29,14 +29,14 @@ protected:
     class RenderEffect
     {
     public:
-       void execute(Effect *effect);
+       void execute(const Effect *effect) const;
 
     private:
-       virtual void drawLines() = 0;
-       virtual void drawTriangleFan() = 0;
-       void setColor(float);
-       virtual void drawEffect(Position, Position, float) = 0;
-       void finishDrawing();
+       virtual void drawLines() const = 0;
+       virtual void drawTriangleFan() const = 0;
+       void setColor(float) const;
+       virtual void drawEffect(Position, Position, float) const = 0;
+       void finishDrawing() const;
     };
 
     /*********************************
@@ -46,9 +46,9 @@ protected:
     class RenderFragment : public RenderEffect
     {
     private:
-       void drawLines();
-       void drawTriangleFan();
-       void drawEffect(Position, Position, float);
+       void drawLines() const;
+       void drawTriangleFan() const;
+       void drawEffect(Position, Position, float) const;
     };
 
     /*********************************
@@ -58,9 +58,9 @@ protected:
     class RenderTrail : public RenderEffect
     {
     private:
-       void drawLines();
-       void drawTriangleFan();
-       void drawEffect(Position, Position, float);
+       void drawLines() const;
+       void drawTriangleFan() const;
+       void drawEffect(Position, Position, float) const;
     };
 
 public:

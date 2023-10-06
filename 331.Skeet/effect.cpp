@@ -106,23 +106,8 @@ Exhaust::Exhaust(const Position & pt, Velocity v) : Effect(pt)
  *************************************************************************/
 void Fragment::render() const
 {
-    // Do nothing if we are already dead
-    if (isDead())
-        return;
-    
-    // Draw this sucker
-    glBegin(GL_TRIANGLE_FAN);
-    
-    // the color is a function of age - fading to black
-    glColor3f((GLfloat)age, (GLfloat)age, (GLfloat)age);
-    
-    // draw the fragment
-    glVertex2f((GLfloat)(pt.getX() - size), (GLfloat)(pt.getY() - size));
-    glVertex2f((GLfloat)(pt.getX() + size), (GLfloat)(pt.getY() - size));
-    glVertex2f((GLfloat)(pt.getX() + size), (GLfloat)(pt.getY() + size));
-    glVertex2f((GLfloat)(pt.getX() - size), (GLfloat)(pt.getY() + size));
-    glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
-    glEnd();
+    RenderFragment fragmentRender;
+    fragmentRender.execute(this);
 }
 
 /************************************************************************
@@ -131,20 +116,8 @@ void Fragment::render() const
  *************************************************************************/
 void Effect::render() const
 {
-   // Do nothing if we are already dead
-   if (isDead())
-       return;
-   
-   // Draw this sucker
-   glBegin(GL_LINES);
-   glColor3f((GLfloat)age, (GLfloat)age, (GLfloat)age);
-
-   // Draw the actual line
-   glVertex2f((GLfloat)pt.getX(), (GLfloat)pt.getY());
-   glVertex2f((GLfloat)ptEnd.getX(), (GLfloat)ptEnd.getY());
-
-   glColor3f((GLfloat)1.0 /* red % */, (GLfloat)1.0 /* green % */, (GLfloat)1.0 /* blue % */);
-   glEnd();
+   RenderTrail trailRender;
+   trailRender.execute(this);
 }
 
 /***************************************************************/
@@ -203,8 +176,9 @@ void Exhaust :: fly()
  * EXECUTE
  * All of the steps for render() are here
  *************************************************************************/
-void Effect::RenderEffect::execute(Effect* effect)
+void Effect::RenderEffect::execute(const Effect* effect) const
 {
+   // If the bullet is dead, we just stop here
    if (effect->isDead())
       return;
 
@@ -219,7 +193,7 @@ void Effect::RenderEffect::execute(Effect* effect)
  * RENDER EFFECT - SET COLOR
  * Sets the color of the effect depending on its age
  *************************************************************************/
-void Effect::RenderEffect::setColor(float age)
+void Effect::RenderEffect::setColor(float age) const
 {
    glColor3f((GLfloat)age, (GLfloat)age, (GLfloat)age);
 }
@@ -228,7 +202,7 @@ void Effect::RenderEffect::setColor(float age)
  * RENDER EFFECT - FINISH DRAWING
  * Calls glEnd in order to end drawing
  *************************************************************************/
-void Effect::RenderEffect::finishDrawing()
+void Effect::RenderEffect::finishDrawing() const
 {
    glEnd();
 }
@@ -243,7 +217,7 @@ void Effect::RenderEffect::finishDrawing()
  * RENDER FRAGMENT - DRAW LINES
  * The fragment doesn't use this
  *************************************************************************/
-void Effect::RenderFragment::drawLines()
+void Effect::RenderFragment::drawLines() const
 {
    // This method intentionally left blank
 }
@@ -252,7 +226,7 @@ void Effect::RenderFragment::drawLines()
  * RENDER FRAGMENT - DRAW TRIANGLE FAN
  * Gives instructions to start drawing the triangle fan
  *************************************************************************/
-void Effect::RenderFragment::drawTriangleFan()
+void Effect::RenderFragment::drawTriangleFan() const
 {
    glBegin(GL_TRIANGLE_FAN);
 }
@@ -261,7 +235,7 @@ void Effect::RenderFragment::drawTriangleFan()
  * RENDER FRAGMENT - DRAW EFFECT
  * Gives more detailed instruction on drawing the fragments
  *************************************************************************/
-void Effect::RenderFragment::drawEffect(Position pt, Position ptEnd, float size)
+void Effect::RenderFragment::drawEffect(Position pt, Position ptEnd, float size) const
 {
    glVertex2f((GLfloat)(pt.getX() - size), (GLfloat)(pt.getY() - size));
    glVertex2f((GLfloat)(pt.getX() + size), (GLfloat)(pt.getY() - size));
@@ -282,7 +256,7 @@ void Effect::RenderFragment::drawEffect(Position pt, Position ptEnd, float size)
  * Gives instructions on what shape to draw, specifically lines for the
  * exhaust and streak
  *************************************************************************/
-void Effect::RenderTrail::drawLines()
+void Effect::RenderTrail::drawLines() const
 {
    glBegin(GL_LINES);
 }
@@ -291,7 +265,7 @@ void Effect::RenderTrail::drawLines()
  * RENDER FRAGMENT - DRAW LINES
  * The fragment doesn't use this
  *************************************************************************/
-void Effect::RenderTrail::drawTriangleFan()
+void Effect::RenderTrail::drawTriangleFan() const
 {
    // This method intentionally left blank
 }
@@ -300,7 +274,7 @@ void Effect::RenderTrail::drawTriangleFan()
  * RENDER TRAIL - DRAW EFFECT
  * Gives more detailed instruction on drawing the exhaust and streak
  *************************************************************************/
-void Effect::RenderTrail::drawEffect(Position pt, Position ptEnd, float size)
+void Effect::RenderTrail::drawEffect(Position pt, Position ptEnd, float size) const
 {
    glVertex2f((GLfloat)pt.getX(), (GLfloat)pt.getY());
    glVertex2f((GLfloat)ptEnd.getX(), (GLfloat)ptEnd.getY());
