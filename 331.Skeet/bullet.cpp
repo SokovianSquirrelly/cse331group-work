@@ -92,6 +92,7 @@ void Bomb::move(std::list<Effect*> & effects)
 
     // do the inertia thing
     Bullet::move(effects);
+    
 }
 
 /*********************************************

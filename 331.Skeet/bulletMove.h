@@ -1,6 +1,8 @@
 #pragma once
 #include "bullet.h"
 #include "effect.h"
+#include <list>
+using namespace std;
 
 /***********************************************************************
  * Header File:
@@ -11,30 +13,18 @@
  *    Movement of the bullets
  ************************************************************************/
 
+class Bullet;
+
 /*********************************************
  * Move
  * Base class for Move functions in "Bullet."
  *********************************************/
-class Move
+class MoveBullet
 {
 public:
-   //Make basic move here, put factory inside bullet class.
-   //virtual void moveBullet(std::list<Effect*>& effects, enum bulletType)
-   //{
-   //  /* switch (bulletType)
-   //   {
-   //   case MISSILE:
-   //      MoveMissile missile;
-   //      return missile.
-
-   //   default:
-   //      break;
-   //   }*/
-   //};
-
    virtual void moveBullet(std::list<Effect*>& effects) = 0;
 protected:
-   void move(Bullet* bullet)
+   void move(std::list<Effect*>& effects, Bullet* bullet)
    {
       // inertia
       bullet->getPosition().add(bullet->getVelocity());
@@ -49,14 +39,15 @@ protected:
  * Move Missile
  * Derived class for Missile Move functions in "Bullet."
  *********************************************/
-class MoveMissile : public Move
+class MoveMissile : public MoveBullet
 {
 public:
    virtual void moveBullet(std::list<Effect*>& effects, Missile*& missile) //Add pointer to missile
     {
+      //Update the effects
       effects.push_back(new Exhaust(missile->getPosition(), missile->getVelocity()));
-
-      move(missile);
+      //Move the missile.
+      move(effects, missile);
     }
    
 };
@@ -65,14 +56,18 @@ public:
  * Move Bomb
  * Derived class for Bomb Move functions in "Bullet."
  *********************************************/
-class MoveBomb : public Move
+class MoveBomb : public MoveBullet
 {
 public:
-   virtual void moveBullet(std::list<Effect*>&effects, Bomb * & bomb) //Add pointer to missile
+   virtual void moveBullet(std::list<Effect*>&effects, Bomb * & bomb) 
    {
-      effects.push_back(new Exhaust(bomb->getPosition(), bomb->getVelocity()));
+      //Check if it needs to die.
+      bomb->timeToDie--;
+      if (!bomb->timeToDie)
+         bomb->kill();
 
-      move(bomb);
+      //Move the bomb
+      move(effects, bomb);
    }
 
 };
@@ -81,13 +76,20 @@ public:
  * Move Shrapnel
  * Derived class for Shrapnel Move functions in "Bullet."
  *********************************************/
-class MoveShrapnel : public Move
+class MoveShrapnel : public MoveBullet
 {
 public:
    virtual void moveBullet(std::list<Effect*>& effects, Shrapnel*& shrapnel) //Add pointer to missile
    {
-      effects.push_back(new Exhaust(shrapnel->getPosition(), shrapnel->getVelocity()));
+      //Check if it needs to die.
+      shrapnel->timeToDie--;
+      if (!shrapnel->timeToDie)
+         shrapnel->kill();
 
-      move(shrapnel);
+      //Update the effects
+      effects.push_back(new Streek(shrapnel->getPosition(), shrapnel->getVelocity()));
+
+      //Move the bomb
+      move(effects, shrapnel);
    }
 };

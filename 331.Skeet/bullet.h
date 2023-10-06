@@ -13,7 +13,7 @@
 #include <list>
 #include <cassert>
 
-enum BulletType { PELLET, MISSILE, BOMB };
+enum BulletType { PELLET, MISSILE, BOMB, SHRAPNEL };
 
 /*********************************************
  * BULLET
@@ -73,7 +73,6 @@ class Pellet : public Bullet
 {
 public:
    Pellet(double angle, double speed = 15.0) : Bullet(angle, speed, 1.0, 1) {}
-   
    void output();
 };
 
@@ -84,8 +83,9 @@ public:
 class Bomb : public Bullet
 {
 private:
-   int timeToDie;
+  
 public:
+   int timeToDie;
    Bomb(double angle, double speed = 10.0) : Bullet(angle, speed, 4.0, 4), timeToDie(60) {}
    
    void output();
@@ -100,10 +100,12 @@ public:
 class Shrapnel : public Bullet
 {
 private:
-   int timeToDie;
+   
 public:
+   int timeToDie;
    Shrapnel(const Bomb & bomb)
    {
+
       // how long will this one live?
       timeToDie = random(5, 15);
       
@@ -155,6 +157,30 @@ inline Bullet* factory(BulletType type, double angle)
       return new Missile(angle);
    case (BOMB):
       return new Bomb(angle);
+   }
+
+   // Program should never reach this point.
+   assert(false);
+   return (nullptr);
+}
+
+/*********************************
+* MoveFactory
+* For the movement of Bullets
+**********************************/
+inline Bullet* moveSelection(BulletType type, double angle)
+{
+   switch (type)
+   {
+   case (MISSILE):
+   //   return new MoveMissile;
+      std::cout << "New MoveMissile called";
+   case (BOMB):
+      //return new MoveBomb;
+      std::cout << "New MoveBomb called";
+   case (SHRAPNEL):
+      //return new MoveShrapnel;
+      std::cout << "New MoveShrapnel called";
    }
 
    // Program should never reach this point.
