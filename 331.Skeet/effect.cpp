@@ -101,16 +101,6 @@ Exhaust::Exhaust(const Position & pt, Velocity v) : Effect(pt)
 /***************************************************************/
 
 /************************************************************************
- * FRAGMENT RENDER
- * Draw the fragment on the screen
- *************************************************************************/
-void Fragment::render() const
-{
-    RenderFragment fragmentRender;
-    fragmentRender.execute(this);
-}
-
-/************************************************************************
  * EFFECT RENDER
  * Draw a missile exhaust or shrapnel streak on the screen
  *************************************************************************/
@@ -118,6 +108,16 @@ void Effect::render() const
 {
    RenderTrail trailRender;
    trailRender.execute(this);
+}
+
+/************************************************************************
+ * FRAGMENT RENDER
+ * Draw the fragment on the screen
+ *************************************************************************/
+void Fragment::render() const
+{
+    RenderFragment fragmentRender;
+    fragmentRender.execute(this);
 }
 
 /***************************************************************/

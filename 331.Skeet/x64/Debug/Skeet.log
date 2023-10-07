@@ -1,17 +1,4 @@
-﻿  bird.cpp
-  bullet.cpp
-  effect.cpp
-C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\effect.cpp(219,19): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\effect.cpp(220,48): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-  force.cpp
-  game.cpp
-  skeet.cpp
-C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\skeet.cpp(267,14): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\skeet.cpp(268,14): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\skeet.cpp(275,17): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\skeet.cpp(276,17): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\skeet.cpp(278,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\skeet.cpp(279,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\skeet.cpp(282,30): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-  Generating Code...
+﻿  effect.cpp
+C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\effect.cpp(187,19): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\effect.cpp(188,48): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
   Skeet.vcxproj -> C:\Users\squir\Desktop\Fall 2023\CSE 331\cse331group-work\331.Skeet\x64\Debug\Skeet.exe

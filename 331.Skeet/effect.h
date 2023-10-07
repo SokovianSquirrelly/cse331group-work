@@ -24,7 +24,7 @@ protected:
 
     /*********************************
     * RENDER EFFECT
-    * Template method
+    * Abstract template
     **********************************/
     class RenderEffect
     {
@@ -41,7 +41,7 @@ protected:
 
     /*********************************
     * RENDER FRAGMENT : RENDER EFFECT
-    * Template method
+    * Concrete template
     **********************************/
     class RenderFragment : public RenderEffect
     {
@@ -53,7 +53,7 @@ protected:
 
     /*********************************
     * RENDER TRAIL : RENDER EFFECT
-    * Template method
+    * Concrete template
     **********************************/
     class RenderTrail : public RenderEffect
     {
